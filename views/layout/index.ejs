@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <title><%=tit%></title>
+    <!--Seo-->
+    <meta name="keywords" content="Football, Premier League, Champions League, Serie A, La Liga, Bundesliga, MLS, USA" />
+    <meta name="description" content="Football news, scores, stats, and features from the world's leading football website" />
+    <meta property="og:site_name" content="newssnappy.com">
+    <meta property="og:title" content="Newssnappy | Football New | Soccer new" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="Football news, scores, stats, and features from the world's leading football website" />
+    <meta property="og:image" content="http://newssnappy.com/images/logo.png" />
+    <meta property="og:url" content="http://newssnappy.com" />
+    <!--End Seo-->
+    <link rel="stylesheet" href="/css/styles.css"/>
+    <link rel="stylesheet" href="/vendor/bower_components/plyr/dist/plyr.css">
+    <link rel="icon" type="image/ico" sizes="56x56" href="/images/logo.ico?v=1.1" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossOrigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,400i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i|Roboto+Slab" media="screen" rel="stylesheet" type="text/css" />
+    <%-partial('../_partial/analytic')%>
+    <script src="/vendor/bower_components/jquery/dist/jquery.js"></script>
+</head>
+<body class="section-front-layout section-front home-page">
+    <%-partial('../_partial/header')%>
+
+    <div class="main-content container">
+        <% include ../_partial/index/top-3-new.ejs %>
+    </div>
+    <div class="content-wrapper container row-eq-height latest-news-infinity">
+        <section class="feed">
+            <% include ../_partial/index/top-4-trending.ejs %>
+            <div class="latest-news-module module  ">
+                <h2 class="module-title">
+                    Latest In<span class="primary-color"> <%=category%></span>
+                </h2>
+                <ul class="media-list">
+                    <% topStory.forEach(function(story, index){ %>
+
+                    <% if (index > 6 && index < 11) { %>
+                    <li class="media">
+                        <article data-article-id="<%=story.espn_story_id%>">
+                            <figure>
+                                <a href="/new/<%=story.slug%>/<%= story.espn_story_id%>">
+                                    <div class="rato-container-16by9 video-post">
+                                        <img class="lazyload media-object" src="<%=story.thumbnail%>" />
+                                    </div>
+                                </a>
+                            </figure>
+                            <div class="media-body">
+                                <a href="/new/<%=story.slug%>/<%= story.espn_story_id%>">
+                                    <% var tags = story.tags.split(','), defaultTag = 'Story'; defaultTag = tags.length > 0 ? tags[0] : defaultTag %>
+                                    <span class="sport"><%= defaultTag %></span>
+                                </a>
+                                <h3 class="media-heading">
+                                    <% var title = story.title; title = title.length > 75 ? title.slice(0, 75) + '...' : title %>
+                                    <a href="/new/<%=story.slug%>/<%= story.espn_story_id%>" title="<%=story.title%>">
+                                        <%=title%>
+                                    </a>
+                                </h3>
+                                <span class="time-ago">
+                                     <%- convertTimeAgo(story.published)%>
+                                    </span>
+                                <span class="author ">
+                                        <a href="#">ESPN</a>
+                                    </span>
+                            </div>
+                        </article>
+                    </li>
+                    <% } %>
+                    <% }); %>
+
+                    <% topVideo.forEach(function(video, index){ %>
+
+                    <% if (index > 2) { %>
+                        <li class="media">
+                            <article data-article-id="<%=video.espn_video_id%>">
+                                <figure>
+                                    <video poster="<%=video.thumbnail%>" controls crossorigin>
+                                        <% var sources = JSON.parse(video.sources), source = sources.full.href === undefined ? sources.href : sources.full.href;%>
+                                        <!-- Video files -->
+                                        <source src="<%= source %>" type="video/mp4">
+                                        <a href="">Download</a>
+                                    </video>
+                                </figure>
+                                <div class="media-body" style="margin-top: 10px">
+                                    <h3 class="media-heading">
+                                        <% var title = video.title; title = title.length > 75 ? title.slice(0, 75) + '...' : title %>
+                                        <a href="/video/<%=video.slug%>/<%= video.espn_video_id%>" title="<%=title%>">
+                                            Video: <%=title%>
+                                        </a>
+                                    </h3>
+                                </div>
+                            </article>
+                        </li>
+                    <% } %>
+                    <% }); %>
+                </ul>
+            </div>
+            <div class="most-shared-module module">
+                <h2 class="module-title">
+                    MOST Shared<span class="primary-color"> <%=category%></span>
+                </h2>
+                <div class="module-content">
+
+
+                    <% if (topStory[11] !== undefined) { %>
+                        <% var story = topStory[10]; %>
+                        <figure class="feature">
+                            <div class="media">
+                                <a href="/new/<%=story.slug%>/<%= story.espn_story_id%>">
+                                    <div class="ratio-container-16by9 video-post">
+                                        <img class="lazyload " src="<%=story.thumbnail%>" />
+                                    </div>
+                                </a>
+                                <a href="/new/<%=story.slug%>/<%= story.espn_story_id%>">
+                                    <% var tags = story.tags.split(','), defaultTag = 'Story'; defaultTag = tags.length > 0 ? tags[0] : defaultTag %>
+                                    <span class="sport"><%= defaultTag %></span>
+                                </a>
+                            </div>
+                            <figcaption class="meta">
+                                <div class="meta-info">
+                                    <% var title = story.title; title = title.length > 75 ? title.slice(0, 75) + '...' : title %>
+                                    <h1 class="headline"><%=title%></h1>
+                                    <span class="author">ESPN</span>
+                                </div>
+                            </figcaption>
+                        </figure>
+
+                    <% } %>
+                    <ul class="alt-features hidden-xs">
+                    <% topStory.forEach(function(story, index){ %>
+                        <% if (index > 11 && index < 15) {%>
+                            <li>
+                                <figure class="alt-feature">
+                                    <div class="media">
+                                        <a href="/new/<%=story.slug%>/<%= story.espn_story_id%>">
+                                            <div class="ratio-container-16by9 video-post">
+                                                <img class="lazyload " src="<%=story.thumbnail%>" />
+                                            </div>
+                                        </a>
+                                        <a href="/new/<%=story.slug%>/<%= story.espn_story_id%>">
+                                            <% var tags = story.tags.split(','), defaultTag = 'Story'; defaultTag = tags.length > 0 ? tags[0] : defaultTag %>
+                                            <span class="sport"><%= defaultTag %></span>
+                                        </a>
+                                    </div>
+                                    <figcaption class="meta">
+                                        <div class="meta-info">
+                                            <% var title = story.title; title = title.length > 75 ? title.slice(0, 75) + '...' : title %>
+                                            <h2 class="headline"><%=title%></h2>
+                                        </div>
+                                    </figcaption>
+                                </figure>
+                            </li>
+                        <% }%>
+                    <% }); %>
+                    </ul>
+
+                </div>
+            </div>
+            <div class="latest-news-module module  infinite">
+                <h2 class="module-title">
+                    More New<span class="primary-color"> <%=category%></span>
+                </h2>
+                <ul class="media-list">
+                    <% topStory.forEach(function(story, index){ %>
+
+                    <% if (index > 14) { %>
+                    <li class="media">
+                        <article data-article-id="<%=story.espn_story_id%>">
+                            <figure>
+                                <a href="/new/<%=story.slug%>/<%= story.espn_story_id%>">
+                                    <div class="rato-container-16by9 video-post">
+                                        <img class="lazyload media-object" src="<%=story.thumbnail%>" />
+                                    </div>
+                                </a>
+                            </figure>
+                            <div class="media-body">
+                                <a href="/new/<%=story.slug%>/<%= story.espn_story_id%>">
+                                    <% var tags = story.tags.split(','), defaultTag = 'Story'; defaultTag = tags.length > 0 ? tags[0] : defaultTag %>
+                                    <span class="sport"><%= defaultTag %></span>
+                                </a>
+                                <h3 class="media-heading">
+                                    <% var title = story.title; title = title.length > 75 ? title.slice(0, 75) + '...' : title %>
+                                    <a href="/new/<%=story.slug%>/<%= story.espn_story_id%>" title="<%=story.title%>">
+                                        <%=title%>
+                                    </a>
+                                </h3>
+                                <span class="time-ago">
+                                    <%- convertTimeAgo(story.published)%>
+                                    </span>
+                                <span class="author ">
+                                        <a href="#">ESPN</a>
+                                    </span>
+                            </div>
+                        </article>
+                    </li>
+                    <% } %>
+                    <% }); %>
+                </ul>
+            </div>
+        </section>
+        <% include ../_partial/index/top-3-right.ejs %>
+    </div>
+
+    <%-partial('../_partial/footer')%>
+    <script src="/vendor/bower_components/plyr/dist/plyr.js"></script>
+    <script>plyr.setup();</script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<html>
+<head>
+    <title><%=video.title%></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta property="og:url"                content="<%=url%>" />
+    <meta property="og:type"               content="article" />
+    <meta property="og:title"              content="<%=video.title%>" />
+    <meta property="og:description"        content="<%=video.description%>" />
+    <meta property="og:image"              content="<%=video.thumbnail%>" />
+    <meta property="og:description"        content="Football news, scores, stats, and features from the world's leading football website" />
+    <meta name="keywords" content="Football, Premier League, Champions League, Serie A, La Liga, Bundesliga, MLS, USA" />
+    <meta name="description" content="Football news, scores, stats, and features from the world's leading football website" />
+
+    <link rel="stylesheet" type="text/css" href="/css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="/css/video.css" />
+    <link rel="stylesheet" href="/vendor/bower_components/plyr/dist/plyr.css">
+    <link rel="icon" type="image/ico" sizes="56x56" href="/images/logo.ico?v=1.1" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossOrigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,400i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i|Roboto+Slab" media="screen" rel="stylesheet" type="text/css" />
+    <%-partial('../_partial/analytic')%>
+</head>
+
+<body class="section-front-layout section-layout section-layout nfl video-page">
+<%-partial('../_partial/header')%>
+<div class="main-content container">
+    <div class="content-wrapper container">
+        <div>
+            <div class="row video-watch">
+                <div class="lead-video">
+                    <div class="col-md-12">
+                        <video poster="<%=video.thumbnail%>" controls crossorigin>
+                            <% var sources = JSON.parse(video.sources), source = sources.full.href === undefined ? sources.href : sources.full.href;%>
+                            <!-- Video files -->
+                            <source src="<%= source %>" type="video/mp4">
+                            <a href="">Download</a>
+                        </video>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="meta">
+                            <div class="section-wrapper">
+                                <a href="#">
+                                    <div class="section pull-left">Video</div>
+                                </a>
+                            </div>
+                            <div class="title"><%=video.title%></div>
+                            <div class="description"><%=video.description%></div>
+                            <div class="clearfix"></div>
+                            <div class="row">
+                                <div class="col-xs-12 share">
+                                    <ul class="social-badges-module share-buttons list-inline">
+                                        <li class="social-badge facebook" data-js="facebook-share">
+                                            <a href="#">
+                                                <span class="icon fa-stack fa-lg">
+                                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                                </span>
+                                                <span class="badge-name"></span>
+                                            </a>
+                                        </li>
+                                        <li class="social-badge twitter" data-js="twitter-share">
+                                            <a href="#">
+                                                <span class="icon fa-stack fa-lg">
+                                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                                </span>
+                                                <span class="badge-name"></span>
+                                            </a>
+                                        </li>
+                                        <li class="social-badge plain-email" data-js="google-plus-share">
+                                            <a href="#">
+                                                <span class="icon fa-stack fa-lg">
+                                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                                    <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+                                                </span>
+                                                <span class="badge-name"></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="module">
+                        <div class="module-title"><span class="primary-color">More</span> Video</div>
+                    </div>
+                </div>
+            </div>
+            <div class="video-list" style="padding-bottom: 100px">
+                <div class="row">
+                    <% videos.forEach(function(video, index){ %>
+                    <div class="item col-md-4 col-sm-4">
+                        <div class="responsive-image cover-img">
+                            <div class="ratio-container-16by9">
+                                <div class="video-image">
+                                    <a href="/video/<%=video.slug%>/<%=video.espn_video_id%>">
+                                        <img src="<%=video.thumbnail%>" alt="" class="lazyload">
+                                        <div class="play-btn"><i class="fa fa-play-circle-o "></i></div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="video-info">
+                                <div class="title">
+                                    <a href="/video/<%=video.slug%>/<%=video.espn_video_id%>" title="<%=video.title%>"><%=video.title%></a>
+                                </div>
+                                <div class="cover-date clearfix">
+                                    <div class="pull-left"><%- convertDateTime(video.published) %></div>
+                                    <div class="pull-right"><i class="fa fa-clock-o"></i>  <%- convertDuration(video.duration) %></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <%})%>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%-partial('../_partial/footer')%>
+<%-partial('../_partial/share-social')%>
+
+<script src="/vendor/bower_components/plyr/dist/plyr.js"></script>
+<script>plyr.setup();</script>
+</body>
+</html>

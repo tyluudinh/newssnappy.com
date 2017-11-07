@@ -1,0 +1,153 @@
+<html>
+<head>
+    <title><%=story.title === undefined ? 'Error' : story.title%></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta property="og:url"                content="<%=url%>" />
+    <meta property="og:type"               content="article" />
+    <meta property="og:title"              content="<%=story.title === undefined ? 'Error' : story.title%>" />
+    <meta property="og:description"        content="<%=story.description%>" />
+    <meta property="og:image"              content="<%=story.thumbnail%>" />
+    <link rel="stylesheet" type="text/css" href="/css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="/css/article.css" />
+    <link rel="icon" type="image/ico" sizes="56x56" href="/images/logo.ico?v=1.1" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossOrigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,400i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i|Roboto+Slab" media="screen" rel="stylesheet" type="text/css" />
+    <%-partial('../_partial/analytic')%>
+</head>
+
+<body class="section-front-layout section-layout article">
+    <%-partial('../_partial/header')%>
+    <div class="main-content">
+        <div class="content-wrapper container">
+            <section class="inifinity-article-list">
+                <article class="article-item infinity-article">
+                    <header class="article-header">
+                        <h1 class="headline">
+                            <a href="/new/<%=story.slug%>/<%= story.espn_story_id%>" title="<%=story.title%>"><%=story.title%></a>
+                        </h1>
+                        <div class="article-tools">
+                            <a href="#" class="article-section">
+                                <% var tags = story.tags.split(','), defaultTag = 'Story'; defaultTag = tags.length > 0 ? tags[0] : defaultTag %>
+                                <span class="sport"><%= defaultTag %></span>
+                            </a>
+                            <div class="share">
+                                <ul class="social-badges-module inverse-colors ">
+                                    <ul class="social-badges-module inverse-colors ">
+                                        <li class="social-badge facebook" data-js="facebook-share">
+                                            <a href="#">
+                                                <span class="icon fa-stack fa-lg">
+                                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                                </span>
+                                                <span class="badge-name"></span>
+                                            </a>
+                                        </li>
+                                        <li class="social-badge twitter" data-js="twitter-share">
+                                            <a href="#">
+                                                <span class="icon fa-stack fa-lg">
+                                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                                </span>
+                                                <span class="badge-name"></span>
+                                            </a>
+                                        </li>
+                                        <li class="social-badge plain-email" data-js="google-plus-share">
+                                            <a href="#">
+                                                <span class="icon fa-stack fa-lg">
+                                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                                    <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+                                                </span>
+                                                <span class="badge-name"></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </ul>
+                            </div>
+                        </div>
+                        <figure class="header-image">
+                            <img alt="<%=story.title%>" src="<%=story.thumbnail%>" style="width: 100%" />
+                            <figcaption class="image-caption">
+                                <span class="caption sr-only"> </span>
+                                <span class="credit">(Dan Mullan)</span>
+                            </figcaption>
+                        </figure>
+                    </header>
+                    <div class="article-main">
+                        <div class="article-body">
+                            <div class="article-author-module module article-author-default-module" >
+                                <div class="author-layout">
+                                    <div class="author-info">
+                                        <div class="tools">
+                                            <table>
+                                                <tbody><tr>
+                                                    <td>
+                                                        <h4 class="writer">
+                                                            <div class="headshot visible-md visible-lg no-headshot">
+                                                            </div>
+                                                            <span class="author-name">
+                                    <span>ESPN</span>                                                                    </span>
+                                                        </h4>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="lastupdated hidden-xs">
+                                                            <p>Updated at <%= updatedAt%></p>
+                                                        </div>
+                                                        <div class="lastupdated visible-xs">
+                                                            <p>Updated at <%= updatedAt%></p>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                </tbody></table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dazn-schedule-widget" style="padding-bottom: 10px">
+
+                            </div>
+                            <div class="entry-content">
+                                <%- story.story%>
+                            </div>
+                        </div>
+                        <aside class="right-rail" style="margin-top: 67px">
+                            <div class="stickit">
+                                <div class="sn-recirculation">
+                                    <div class="list-recirculation-module module">
+                                        <ul class="media-list">
+                                            <% listTagStory.forEach(function(story, index){ %>
+                                                <li class="media">
+                                                    <a class="pull-left" href="/new/<%=story.slug%>/<%= story.espn_story_id%>" >
+
+                                                        <div class="img-container">
+
+                                                            <img class="media-object lazyloaded" src="<%=story.thumbnail%>" />
+                                                            <i class="fa fa-caret-left">
+
+                                                            </i>
+
+                                                        </div>
+                                                    </a>
+                                                    <div class="media-body pull-left">
+                                                        <h3 class="media-heading">
+                                                            <a href="/new/<%=story.slug%>/<%= story.espn_story_id%>"><%=story.title%></a>
+                                                        </h3>
+
+                                                    </div>
+                                                </li>
+                                            <%})%>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </aside>
+                    </div>
+                </article>
+            </section>
+        </div>
+    </div>
+    <%-partial('../_partial/footer')%>
+    <%-partial('../_partial/share-social')%>
+</body>
+</html>

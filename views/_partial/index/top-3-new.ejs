@@ -1,0 +1,28 @@
+<% if(topStory.length > 2 && topVideo.length > 0){ %>
+    <main class="dynamic-lead-module container">
+
+        <% var story = topStory[0], isHomePage = true; %>
+        <% include ../article/story.ejs %>
+        <ul class="alt-features">
+            <li>
+                <% var story = topStory[1], isHomePage = false; %>
+                <% include ../article/story.ejs %>
+            </li>
+            <li>
+                <figure class="alt-feature video-post" data-article-id="<%=topVideo[0].espn_video_id%>">
+                    <img src="<%=topVideo[0].thumbnail%>" alt="" width="100%" height="100%" />
+                    <div class="play-btn f52"><i class="fa fa-play-circle-o "></i></div>
+                    <figcaption class="meta content-article">
+                        <div class="meta-info"><% var tags = topVideo[0].tags.split(','), defaultTag = 'Video'; defaultTag = tags.length > 0 ? tags[0] : defaultTag %>
+                            <span class="sport"><%= defaultTag %></span>
+                            <h2 class="headline"><%=topVideo[0].title%></h2>
+                            <span class="author">ESPN</span>
+                            <p class="deck"><%=topVideo[0].description%></p>
+                        </div>
+                    </figcaption>
+                    <a href="/video/<%=topVideo[0].slug%>/<%= topVideo[0].espn_video_id%>" target="">Read more</a>
+                </figure>
+            </li>
+        </ul>
+    </main>
+<% } %>

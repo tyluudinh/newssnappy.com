@@ -1,0 +1,54 @@
+<div class="trending-now-alt-module module">
+    <h1 class="module-title">Trending in <span class="primary-color"> <%=category%></span></h1>
+    <div class="module-container row">
+        <% topStory.forEach(function(story, index){ %>
+
+            <% if (index > 3 && index < 7) { %>
+                <div class="items col-xs-6 col-sm-6 col-md-3">
+                    <div>
+                        <figure class="item thumbnail">
+                            <a href="/new/<%=story.slug%>/<%= story.espn_story_id%>">
+                                <div class="ratio-container-16by9">
+                                    <img class="lazyload " src="<%=story.thumbnail%>" />
+                                </div>
+                            </a>
+                            <figcaption class="caption">
+                                <h3 class="headline">
+                                    <a href="/new/<%=story.slug%>/<%= story.espn_story_id%>" title="<%=story.title%>">
+                                        <%=story.title%>
+                                    </a>
+                                </h3>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+            <% } %>
+        <% }); %>
+
+        <% topVideo.forEach(function(video, index){ %>
+
+        <% if (index > 1 && index < 3) { %>
+        <div class="items col-xs-6 col-sm-6 col-md-3">
+            <div>
+                <figure class="item thumbnail">
+                    <a href="/video/<%=video.slug%>/<%= video.espn_video_id%>">
+                        <div class="ratio-container-16by9 video-post">
+                            <img class="lazyload " src="<%=video.thumbnail%>" />
+                            <div class="play-btn"><i class="fa fa-play-circle-o "></i></div>
+                        </div>
+                    </a>
+                    <figcaption class="caption">
+                        <h3 class="headline">
+                            <a href="/video/<%=video.slug%>/<%= video.espn_video_id%>" title="<%=video.title%>">
+                                <%=video.title%>
+                            </a>
+                        </h3>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+        <% } %>
+        <% }); %>
+
+    </div>
+</div>

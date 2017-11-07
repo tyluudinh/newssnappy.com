@@ -1,0 +1,1 @@
+# newssnappy.com

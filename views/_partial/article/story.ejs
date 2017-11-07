@@ -1,0 +1,14 @@
+
+<figure class="<%if (isHomePage) {%>feature content-article<%}else{ %>alt-feature<%}%>" data-article-id="<%=story.espn_story_id%>">
+    <img src="<%=story.thumbnail%>" alt="" width="100%" height="100%" />
+    <figcaption class="<%if (isHomePage) {%>meta<%}else{ %>meta content-article<%}%>">
+        <div class="meta-info">
+            <% var tags = story.tags.split(','), defaultTag = 'Story'; defaultTag = tags.length > 0 ? tags[0] : defaultTag %>
+            <span class="sport"><%= defaultTag %></span>
+            <h2 class="headline"><%=story.title%></h2>
+            <span class="author">ESPN</span>
+            <p class="deck"><%=story.description%></p>
+        </div>
+    </figcaption>
+    <a href="/new/<%=story.slug%>/<%= story.espn_story_id%>" target="">Read more</a>
+</figure>
