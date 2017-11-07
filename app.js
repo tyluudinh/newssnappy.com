@@ -35,6 +35,15 @@ app.use('/new', story);
 app.use('/video', video);
 app.use('/league', league);
 
+//Robots file
+app.use(function (req, res, next) {
+  if ('/robots.txt' === req.url) {
+    res.type('text/plain');
+    res.send("User-agent: *\nDisallow: /");
+  } else {
+    next();
+  }
+});
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
@@ -54,6 +63,8 @@ app.use(function(err, req, res, next) {
     title: 'Error'
   });
 });
+
+
 
 
 
