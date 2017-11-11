@@ -82,7 +82,11 @@
         </div>
     </div>
 </header>
-<div id="vp-main-top-banner">
+<script type="text/javascript" src="https://campaigns-assets-vp.daumcdn.net/websdk/vp-latest.min.js"></script>
+<script>
+  VP.init({clientId: "3daa3e629bf97b9c0b0c22829dd108c9"});
+</script>
+<div id="main_top_banner">
 
 </div>
 <script>
@@ -94,6 +98,6 @@ var opts = {
             console.log("no ad");
         }
     }
-}
-VP.ad('vp-main-top-banner', 'main_top_banner', 970, 90, opts);
+};
+VP.ad('main_top_banner', 'main_top_banner', 970, 90, opts);
 </script>
