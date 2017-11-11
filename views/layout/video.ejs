@@ -90,6 +90,25 @@
                 </div>
             </div>
             <div class="row">
+              <div class="entry-content">
+                <div id="vp-video-banner">
+
+                </div>
+                <script>
+                var opts = {
+                    callback: function (filled) {
+                        if (filled) {
+                            console.log("ad loaded video_center_banner");
+                        } else {
+                            console.log("no ad video_center_banner");
+                        }
+                    }
+                }
+                VP.ad('vp-video-banner', 'video_center_banner', 336, 280, opts);
+                </script>
+              </div>
+            </div>
+            <div class="row">
                 <div class="col-md-12">
                     <div class="module">
                         <div class="module-title"><span class="primary-color">More</span> Video</div>

@@ -121,6 +121,21 @@
                                 medianet_versionId = "3111299";
                             </script>
                             <div class="entry-content">
+                              <div id="vp-story-banner">
+
+                              </div>
+                              <script>
+                              var opts = {
+                                  callback: function (filled) {
+                                      if (filled) {
+                                          console.log("ad loaded main_center_banner");
+                                      } else {
+                                          console.log("no ad main_center_banner");
+                                      }
+                                  }
+                              }
+                              VP.ad('vp-story-banner', 'main_center_banner', 468, 60, opts);
+                              </script>
                                 <%- story.story%>
                             </div>
                         </div>
@@ -148,6 +163,24 @@
                                                         </h3>
 
                                                     </div>
+                                                </li>
+                                                <li class="media">
+
+                                                  <div id="vp-main-right-banner">
+
+                                                  </div>
+                                                  <script>
+                                                  var opts = {
+                                                      callback: function (filled) {
+                                                          if (filled) {
+                                                              console.log("ad loaded main_right_banner");
+                                                          } else {
+                                                              console.log("no ad main_right_banner");
+                                                          }
+                                                      }
+                                                  }
+                                                  VP.ad('vp-main-right-banner', 'main_right_banner', 160, 600, opts);
+                                                  </script>
                                                 </li>
                                             <%})%>
                                         </ul>

@@ -82,3 +82,18 @@
         </div>
     </div>
 </header>
+<div id="vp-main-top-banner">
+
+</div>
+<script>
+var opts = {
+    callback: function (filled) {
+        if (filled) {
+            console.log("ad loaded");
+        } else {
+            console.log("no ad");
+        }
+    }
+}
+VP.ad('vp-main-top-banner', 'main_top_banner', 970, 90, opts);
+</script>

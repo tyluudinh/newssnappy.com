@@ -49,7 +49,24 @@
                 </li>
                 <% } %>
                 <% }); %>
+                <li class="media">
 
+                  <div id="vp-main-right-banner">
+
+                  </div>
+                  <script>
+                  var opts = {
+                      callback: function (filled) {
+                          if (filled) {
+                              console.log("ad loaded main_right_banner");
+                          } else {
+                              console.log("no ad main_right_banner");
+                          }
+                      }
+                  }
+                  VP.ad('vp-main-right-banner', 'main_right_banner', 160, 600, opts);
+                  </script>
+                </li>
             </ul>
         </div>
         <script id="mNCC" language="javascript">

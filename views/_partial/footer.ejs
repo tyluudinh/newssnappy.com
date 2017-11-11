@@ -1,4 +1,20 @@
 <footer id="sn-footer" class="footer">
+
+  <div id="vp-main-bottom-banner">
+
+  </div>
+  <script>
+  var opts = {
+      callback: function (filled) {
+          if (filled) {
+              console.log("ad loaded main_bottom_banner");
+          } else {
+              console.log("no ad main_bottom_banner");
+          }
+      }
+  }
+  VP.ad('vp-main-bottom-banner', 'main_bottom_banner', 728, 90, opts);
+  </script>
     <div class="footer-desktop hidden-sm hidden-xs">
         <div class="footer-nav-outer">
             <div class="container">
